@@ -4,7 +4,7 @@ class Api::CommentsController < ApplicationController
     if comment.persisted? 
       render json: { comment: comment, message: "your comment was successfully created" }, status: 201
     else
-      render json: {message: "ops" }, status: 422
+      render json: {message: comment.errors['body'].to_sentence }, status: 422
     end
   end
 

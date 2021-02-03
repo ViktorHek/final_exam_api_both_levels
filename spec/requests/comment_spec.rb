@@ -19,4 +19,23 @@ let!(:article) { create(:article) }
       expect(response_json['message']).to eq "your comment was successfully created"
     end
   end
+
+  describe 'sad path' do
+    before do
+      post "/api/articles/#{article.id}/comments",
+        params: {
+          comment: {
+            article_id: article.id
+          }
+        }
+    end
+    
+    it 'is expected to return http status 422' do
+      expect(response).to have_http_status 422
+    end
+
+    it 'is expected to return a success message' do
+      expect(response_json['message']).to eq "can't be blank"
+    end
+  end
 end
