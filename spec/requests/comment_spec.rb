@@ -5,13 +5,16 @@ let!(:article) { create(:article) }
       post "/api/articles/#{article.id}/comments",
         params: {
           comment: "firts comment",
-          article_id: article.id
+          index_comments_on_article_id: article.id
         }
     end
     
-    it 'is expected to resturn http status 201' do
+    it 'is expected to return http status 201' do
       expect(response).to have_http_status 201
     end
-    
+
+    it 'is expected to return a success message' do
+      expect(response_json['message']).to eq "your comment was successfully created"
+    end
   end
 end
