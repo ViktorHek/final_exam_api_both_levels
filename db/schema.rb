@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_02_03_120539) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "body"
+    t.string "body"
     t.bigint "article_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -4,8 +4,10 @@ let!(:article) { create(:article) }
     before do
       post "/api/articles/#{article.id}/comments",
         params: {
-          comment: "firts comment",
-          index_comments_on_article_id: article.id
+          comment: {
+            body: "firts comment",
+            article_id: article.id
+          }
         }
     end
     

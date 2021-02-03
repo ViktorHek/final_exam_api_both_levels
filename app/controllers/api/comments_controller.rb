@@ -1,9 +1,8 @@
 class Api::CommentsController < ApplicationController
   def create
     comment = Comment.create(comment_params)
-    binding.pry
     if comment.persisted? 
-      redner json: { comment: comment }, status: 201
+      render json: { comment: comment, message: "your comment was successfully created" }, status: 201
     else
       render json: {message: "ops" }, status: 422
     end
@@ -15,6 +14,6 @@ class Api::CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :index_comments_on_article_id)
+    params.require(:comment).permit(:body, :article_id)
   end
 end
