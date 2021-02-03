@@ -1,5 +1,5 @@
 RSpec.describe 'POST /api/articles', type: :request do
-let(:article) { create(:article) }
+let!(:article) { create(:article) }
   describe 'successfully comment on an article' do
     before do
       post "/api/articles/#{article.id}/comments",
